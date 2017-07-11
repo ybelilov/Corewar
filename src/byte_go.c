@@ -40,9 +40,9 @@ void	function_for_first_time(t_label *l)
 	l->command = (t_command *)malloc(sizeof(t_command));
 	s = l->command;
 	s->opcode = -1;
-	s->b1 = 0;
-	s->b2 = 0;
-	s->b3 = 0;
+	// s->b1 = 0;
+	// s->b2 = 0;
+	// s->b3 = 0;
 	s->next = NULL;
 	l->name = NULL;
 	l->command = s;
@@ -67,9 +67,9 @@ t_command *return_new_command(t_label *l)
 		s = s->next;
 		s->next = NULL;
 		s->opcode = -1;
-		s->b1 = 0;
-		s->b2 = 0;
-		s->b3 = 0;
+		// s->b1 = 0;
+		// s->b2 = 0;
+		// s->b3 = 0;
 	}
 	return s;
 }
@@ -174,8 +174,8 @@ int		byte_go(int fd, t_char *lst)
 		i = write_command_after_label(&line, lst, tp, &str);
 		// printf("i = %d\n", i);
 	}
-	l->next->command->b1 = 20;
-	l->next->command->a1 = ft_strdup("adasf");
+	//l->next->command->b1 = 20;
+	//l->next->command->a1 = ft_strdup("adasf");
 	// printf("-?%d ", valid_label(l));
 	if(i == -1 || !valid_label(l))
 		return 0;

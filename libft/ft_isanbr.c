@@ -14,6 +14,8 @@
 
 int		ft_isanbr(char *str)
 {
+	if ((*str == '+' || *str == '-') && (str[1] >= '0' || str[1] <= '9'))
+		str++;
 	while (*str)
 	{
 		if (*str < '0' || *str > '9')

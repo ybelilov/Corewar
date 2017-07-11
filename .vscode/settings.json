@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "op.h": "c",
+        "asm.h": "c"
+    }
+}

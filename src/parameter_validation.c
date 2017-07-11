@@ -24,7 +24,9 @@ int		parameter_validation(t_char *main, t_command *command, char *com)
 		return (0);
 	while (arg[++i])
 	{
-		res = is_t_dir(arg[i]) + is_t_ind(arg[i]) + is_t_reg(arg[i]);
+		res = is_t_dir(arg[i], &command->param_type[i], &command->param[i], OP[command->opcode - 1].label_size)
+				+ is_t_ind(arg[i], &command->param_type[i], &command->param[i])
+				+ is_t_reg(arg[i], &command->param_type[i], &command->param[i]);
 		if ((OP[command->opcode - 1].r_d_i[i] == 7 && res != 0 )
 			|| OP[command->opcode - 1].r_d_i[i] == res
 			|| OP[command->opcode - 1].r_d_i[i] - res == T_DIR
@@ -34,6 +36,7 @@ int		parameter_validation(t_char *main, t_command *command, char *com)
 		else
 			return (0);
 	}
+	command->num_param = OP[command->opcode - 1].arguments;
 	return (1);
 }
 

@@ -36,12 +36,9 @@ typedef struct			s_op
 typedef struct			s_command
 {
 	int					opcode;
-	int 				b1;
-	int 				b2;
-	int					b3;
-	char				*a1;
-	char				*a2;
-	char				*a3;
+	int					num_param;
+	int 				param_type[3];
+	char				**param;
 	struct s_command	*next;
 }						t_command;
 
@@ -63,7 +60,7 @@ typedef struct			s_char
 
 int						correct_char_name(char *str, int size);
 char 					*read_while_empty(char *line, int fd);
-char					*ten_hex(int i, char *str, int size);
+char					*ten_hex(long long int i, char *str, int size);
 int						byte_go(int fd, t_char *lst);
 int						correct_label_char(char *str, int size);
 void					get_op(t_char *lst);
@@ -75,9 +72,9 @@ int						valid_label(t_label *l);
 	Parameter validation
 */
 int		parameter_validation(t_char *main, t_command *command, char *com);
-int		is_t_dir(char *arg);
-int		is_t_ind(char *arg);
-int		is_t_reg(char *arg);
+int		is_t_dir(char *arg, int *param_type, char **param, int size);
+int		is_t_ind(char *arg, int *param_type, char **param);
+int		is_t_reg(char *arg, int *param_type, char **param);
 /*
 	Helpful functions
 */

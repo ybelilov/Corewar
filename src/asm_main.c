@@ -69,47 +69,57 @@ void	ok_lets_go(int fd, t_char *lst)
 		printf("Error: bad name\n");
 }
 
-int		main(int argc, char **argv)
+int		main()
 {
-	int		fd;
+	//int		fd;
 	// int		fd2;
 	t_char	*lst;
+	t_command *com;
 	// char 	*tmp;
 	// char 	*name;
 
-	fd = -1;
-	if (argc > 2)
-		printf("Error: Too many arguments\n");
-	else if(argc == 1 || (argc == 2 && !correct_end_s(argv[1]))){
-		printf("./asm filename.s\n");
-	}
-	else
-	{
-			fd = open(argv[1], O_RDONLY);
-			// tmp = ft_strndup(argv[1], ft_strlen(argv[1])-2);
-			// name = ft_strjoin(tmp, ".cor");
-			// free(tmp);
-			// fd2 = open(name, O_TRUNC);
-			// if(fd2 == -1)
-			// 	fd2 = open(name , O_CREAT | O_RDWR, S_IWUSR | S_IRUSR);
-			// else
-			// 	close(fd2);
-			// 	fd2 = open(name , S_IRUSR | S_IWUSR | O_RDWR);
-			// if(fd2 == -1)
-			// {
-			// 	printf("Error: couldn't create file, maybe you need chmod\n");
-			// 	return (1);
-			// }
-		if(fd < 0)
-			printf("Error: Bad file\n");
-		else
-		{
+	// fd = -1;
+	// if (argc > 2)
+	// 	printf("Error: Too many arguments\n");
+	// else if(argc == 1 || (argc == 2 && !correct_end_s(argv[1]))){
+	// 	printf("./asm filename.s\n");
+	// }
+	// else
+	// {
+	// 		fd = open(argv[1], O_RDONLY);
+	// 		// tmp = ft_strndup(argv[1], ft_strlen(argv[1])-2);
+	// 		// name = ft_strjoin(tmp, ".cor");
+	// 		// free(tmp);
+	// 		// fd2 = open(name, O_TRUNC);
+	// 		// if(fd2 == -1)
+	// 		// 	fd2 = open(name , O_CREAT | O_RDWR, S_IWUSR | S_IRUSR);
+	// 		// else
+	// 		// 	close(fd2);
+	// 		// 	fd2 = open(name , S_IRUSR | S_IWUSR | O_RDWR);
+	// 		// if(fd2 == -1)
+	// 		// {
+	// 		// 	printf("Error: couldn't create file, maybe you need chmod\n");
+	// 		// 	return (1);
+	// 		// }
+	// 	if(fd < 0)
+	// 		printf("Error: Bad file\n");
+	// 	else
+	// 	{
 			lst = (t_char *)malloc(sizeof(t_char));
 			lst->name = NULL;
-			lst->fd = fd;
+			//lst->fd = fd;
 			lst->comment = NULL;
-			ok_lets_go(fd, lst);
-		}
-	}
+	// 		ok_lets_go(fd, lst);
+	// 	}
+	// }
+
+
+	get_op(lst);
+	com = (t_command *)malloc(sizeof(t_command));
+	com->param = (char**)malloc(sizeof(char*) * 3);
+	com->opcode = 11;
+
+	int i = parameter_validation(lst, com, "r1, 9999999999, %:live");
+	printf ("%d\n", i);
 	return 0;
 }

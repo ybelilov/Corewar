@@ -29,7 +29,7 @@ liba:
 	@make -C $(LIBFT)
 
 comp:
-	@$(CC) $(FLAGS) $(OBJ) ./libft/libft.a -o $(ASM)
+	@$(CC) $(FLAGS) -g  $(OBJ) ./libft/libft.a -o $(ASM)
 
 clean:
 	@make clean -C $(LIBFT)

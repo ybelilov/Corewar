@@ -83,7 +83,8 @@ OBJS =	ft_atoi.o \
 		ft_strtoend.o\
 		ft_atoi_unsigned.o\
 		ft_freearray.o\
-		ft_isanbr.o
+		ft_isanbr.o\
+		most_long_long.o
 
 .PHONY: all clean fclean re
 

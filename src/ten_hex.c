@@ -12,13 +12,15 @@
 
 #include "../includes/asm.h"
 
-char	*ten_hex(int i, char *str, int size)
+char	*ten_hex(long long int i, char *str, int size)
 {
 	char 	*m;
 	char 	*tmp;
 
 	int		l;
 
+	if(i < 0)
+		i = 9223372036854775807 + i + 1;
 	l = 0;
 	m = (char *)malloc(sizeof(char) * size);
 	*(m + size) = '\0';

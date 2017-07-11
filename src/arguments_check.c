@@ -12,27 +12,48 @@
 
 #include "../includes/asm.h"
 
-int		is_t_dir(char *arg)
+int		is_t_dir(char *arg, int *param_type, char **param, int size)
 {
-	if (!arg || arg[0] != DIRECT_CHAR || !ft_isanbr(&arg[1]) ||
-		ft_atoi_unsigned(&arg[1]) > 4294967295 ||
-			!ft_atoi_unsigned(&arg[1]))
+	if (arg[1] == LABEL_CHAR && arg[0] == DIRECT_CHAR)
+	{
+		*param_type = T_DIR * 10;
+		*param = ft_strdup(&arg[2]);
+	}
+	else if (arg[0] == DIRECT_CHAR && arg[1] != '+' && ft_isanbr(arg))
+	{
+		*param_type = T_DIR;
+		*param = ten_hex(most_long_long(arg), NULL, size * 2);
+	}
+	else
 		return(0);
 	return(T_DIR);
 }
 
 
-int		is_t_ind(char *arg)
+int		is_t_ind(char *arg, int *param_type, char **param)
 {
-	if (!arg || arg[0] != DIRECT_CHAR || arg[1] != LABEL_CHAR)
+	if (arg[0] == LABEL_CHAR)
+	{
+		*param_type = T_IND * 10;
+		*param = ft_strdup(&arg[1]);
+	}
+	else if (arg[0] != '+' && ft_isanbr(arg))
+	{
+		*param_type = T_IND;
+		*param = ten_hex(most_long_long(arg), NULL, IND_SIZE * 2);
+	}
+	else 
 		return (0);
 	return (T_IND);
 }
 
-int		is_t_reg(char *arg)
+int		is_t_reg(char *arg, int *param_type, char **param)
 {
 	if (!arg || arg[0] != 'r' || !ft_isanbr(&arg[1]) || arg[0] == '0'
 		|| ft_atoi(&arg[1]) > REG_NUMBER || ft_atoi(&arg[1]) < 1)
 		return (0);
+	*param_type = T_REG;
+	*param = ft_strdup(&arg[1]);
 	return (T_REG);
 }
+
