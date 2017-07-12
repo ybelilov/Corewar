@@ -19,7 +19,10 @@ FILE = 	./src/asm_main.o \
 		./src/byte_go.o \
 		./src/read_while_empty.o\
 		./src/parameter_validation.o\
-		./src/arguments_check.o
+		./src/arguments_check.o\
+		./src/write_in_file.o \
+		./src/instead_label_way.o \
+		./src/prog_size.o
 
 OBJ = $(FILE:.o=.c)
 

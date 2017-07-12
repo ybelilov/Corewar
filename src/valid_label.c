@@ -37,18 +37,19 @@ int		valid_label(t_label *l)
 		c = tmp->command;
 		while(c)
 		{
-			// if(c->b1 == 20 || c->b1 == 40)
-			// 	if (!find_label_in_label(c->a1, l))
-			// 		return 0;
-			// if(c->b2 == 20 || c->b2 == 40)
-			// 	if (!find_label_in_label(c->a2, l))
-			// 		return 0;
-			// if(c->b3 == 20 || c->b3 == 40)
-			// 	if (!find_label_in_label(c->a3, l))
-			// 		return 0;
+			if(c->param_type[0] == 20 || c->param_type[0] == 40)
+				if (!find_label_in_label(c->param[0], l))
+					return 0;
+			if(c->param_type[1] == 20 || c->param_type[1] == 40)
+				if (!find_label_in_label(c->param[1], l))
+					return 0;
+			if(c->param_type[2] == 20 || c->param_type[2] == 40)
+				if (!find_label_in_label(c->param[2], l))
+					return 0;
 			c = c->next;
 		}
 		tmp = tmp->next;
 	}
 	return 1;
 }
+

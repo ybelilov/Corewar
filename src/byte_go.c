@@ -24,7 +24,7 @@ void	function_delete_vuvod_l(t_label *l, t_char *lst)//delete
 		{
 			while(tmp && tmp->opcode != -1)
 			{
-				printf(" %d  [%s]\n",tmp->opcode, lst->op[tmp->opcode - 1].name );
+				printf("  [%s]\n",lst->op[tmp->opcode - 1].name );
 				tmp = tmp->next;
 			}
 		}
@@ -36,13 +36,18 @@ void	function_delete_vuvod_l(t_label *l, t_char *lst)//delete
 void	function_for_first_time(t_label *l)
 {
 	t_command	*s;
-
+	char		**tmp;
 	l->command = (t_command *)malloc(sizeof(t_command));
 	s = l->command;
 	s->opcode = -1;
-	// s->b1 = 0;
-	// s->b2 = 0;
-	// s->b3 = 0;
+	s->param_type[0] = 0;
+	s->param_type[1] = 0;
+	s->param_type[2] = 0;
+	s->param = (char **)malloc(sizeof(char *) * 3);
+	tmp = s->param;
+	tmp[0] = NULL;
+	tmp[1] = NULL;
+	tmp[2] = NULL;
 	s->next = NULL;
 	l->name = NULL;
 	l->command = s;
@@ -53,6 +58,7 @@ void	function_for_first_time(t_label *l)
 t_command *return_new_command(t_label *l)
 {
 	t_command	*s;
+	char		**tmp;
 
 	while(l->next)
 		l = l->next;
@@ -67,9 +73,14 @@ t_command *return_new_command(t_label *l)
 		s = s->next;
 		s->next = NULL;
 		s->opcode = -1;
-		// s->b1 = 0;
-		// s->b2 = 0;
-		// s->b3 = 0;
+		s->param_type[0] = 0;
+		s->param_type[1] = 0;
+		s->param_type[2] = 0;
+		s->param = (char **)malloc(sizeof(char *) * 3);
+		tmp = s->param;
+		tmp[0] = NULL;
+		tmp[1] = NULL;
+		tmp[2] = NULL;
 	}
 	return s;
 }
@@ -153,8 +164,7 @@ int		byte_go(int fd, t_char *lst)
 	function_for_first_time(l);
 	i = 0;
 	line = NULL;
-	line = read_while_empty(line, fd);
-	if(!line)
+	if(!(line = read_while_empty(line, lst->fd)))
 		return 0;
 	i = write_command_before_label(&line, lst, l, label_this(line));
 	while(i == 1)
@@ -172,13 +182,10 @@ int		byte_go(int fd, t_char *lst)
 		}
 		i = 0;
 		i = write_command_after_label(&line, lst, tp, &str);
-		// printf("i = %d\n", i);
 	}
-	//l->next->command->b1 = 20;
-	//l->next->command->a1 = ft_strdup("adasf");
-	// printf("-?%d ", valid_label(l));
 	if(i == -1 || !valid_label(l))
 		return 0;
-	function_delete_vuvod_l(l, lst);//delete
+	instead_label_way(l, lst);
+	// function_delete_vuvod_l(l, lst);//delete
 	return 1;
 }
