@@ -127,8 +127,13 @@ int		main(int argc, char **argv)
 			lst->name = NULL;
 			lst->fd = fd;
 			lst->comment = NULL;
+<<<<<<< HEAD
 			if(ok_lets_go(fd, lst))
 				write_in_file(fd2, lst);
+=======
+			ok_lets_go(fd, lst);
+			write_in_file(fd2, lst);
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 			close(fd2);
 			close(fd);
 		}

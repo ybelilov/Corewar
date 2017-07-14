@@ -12,6 +12,7 @@
 
 #include "../includes/asm.h"
 
+<<<<<<< HEAD
 int		prog_size(t_char *lst)
 {
 	t_label *l;
@@ -36,4 +37,37 @@ int		prog_size(t_char *lst)
 		return 1;
 	}
 	return 0;
+=======
+int     prog_size(t_label *l)
+{
+    t_command   *t;
+    char        **par;
+    char        *tmp;
+    int         i;
+    int         ret;
+
+    ret = 0;
+    while(l)
+    {
+        t = l->command;
+        while(t)
+        {
+            i = 0;
+            par = t->param;
+            while(i < t->num_param)
+            {
+                tmp = par[i];
+                while(*tmp)
+                {
+                    tmp++;
+                    ret++;
+                }
+                i++;
+            }
+            t = t->next;
+        }
+        l = l->next;
+    }
+    return ret;
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 }

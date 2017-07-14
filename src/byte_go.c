@@ -25,10 +25,14 @@ void	function_delete_vuvod_l(t_label *l, t_char *lst)//delete
 			printf("  command:\n");
 		while(tmp)
 			{
+<<<<<<< HEAD
 				// printf("op=%d", tmp->opcode);
 				printf("  [%s]",lst->op[tmp->opcode - 1].name);
 				printf(" num = %d   ", tmp->num_param);
 				printf("[%d %s]    [%d %s]    [%d %s]\n", tmp->param_type[0],tmp->param[0], tmp->param_type[1], tmp->param[1], tmp->param_type[2], tmp->param[2]);
+=======
+				printf("  [%s]\n",lst->op[tmp->opcode - 1].name );
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 				tmp = tmp->next;
 			}
 		}
@@ -43,11 +47,17 @@ void	function_for_first_time(t_label *l)
 {
 	t_command	*s;
 	char		**tmp;
+<<<<<<< HEAD
 
 	l->command = (t_command *)malloc(sizeof(t_command));
 	s = l->command;
 	s->opcode = -1;
 	s->num_param = 0;
+=======
+	l->command = (t_command *)malloc(sizeof(t_command));
+	s = l->command;
+	s->opcode = -1;
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 	s->param_type[0] = 0;
 	s->param_type[1] = 0;
 	s->param_type[2] = 0;
@@ -81,7 +91,10 @@ t_command *return_new_command(t_label *l)
 		s = s->next;
 		s->next = NULL;
 		s->opcode = -1;
+<<<<<<< HEAD
 		s->num_param = 0;
+=======
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 		s->param_type[0] = 0;
 		s->param_type[1] = 0;
 		s->param_type[2] = 0;
@@ -198,6 +211,7 @@ int		byte_go(int fd, t_char *lst)
 		i = 0;
 		i = write_command_after_label(&line, lst, tp, &str);
 	}
+<<<<<<< HEAD
 	// printf("line =%s i=%d\n", line, i);
 	if(i == -1 || !valid_label(l))//!size_ok(l)
 		return 0;
@@ -215,5 +229,11 @@ int		byte_go(int fd, t_char *lst)
 	// printf("==%d\n", i);
 	// printf("%s\n", return_hex_octal(i));
 	// function_delete_vuvod_l(l, lst);
+=======
+	if(i == -1 || !valid_label(l))
+		return 0;
+	instead_label_way(l, lst);
+	// function_delete_vuvod_l(l, lst);//delete
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 	return 1;
 }

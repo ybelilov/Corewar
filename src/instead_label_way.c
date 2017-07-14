@@ -12,6 +12,29 @@
 
 #include "../includes/asm.h"
 
+<<<<<<< HEAD
+=======
+int   weight_command(t_command *c, t_char *lst)
+{
+	int     i;
+	int     res;
+
+	res = 0;
+	i = 0;
+	while(i < c->num_param)
+	{
+		if(c->param_type[i] == 1)
+			res = res + 2;
+		if(c->param_type[i] == 2 || c->param_type[i] == 20)
+			res = res + 4;
+		if(c->param_type[i] == 4 || c->param_type[i] == 40)
+			res = res + (lst->op[c->opcode - 1].label_size) * 2;
+		i++;
+	}
+	return res;
+}
+
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 int  cal2(t_label *now, t_command *c, t_char *lst)
 {
 	t_command   *k;
@@ -29,7 +52,11 @@ int  cal2(t_label *now, t_command *c, t_char *lst)
 	return res;
 }
 
+<<<<<<< HEAD
 int  cal1(t_label *start, t_command *c, t_char *lst, char *str)
+=======
+int  cal1(t_label *start, t_command *c, t_char *lst)
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 {
 	t_label     *s;
 	t_command   *k;
@@ -39,6 +66,7 @@ int  cal1(t_label *start, t_command *c, t_char *lst, char *str)
 	s = start;
 	while(s)
 	{
+<<<<<<< HEAD
 		if(s->name && !ft_strcmp(s->name, str))
 			break ;
 		s = s->next;
@@ -47,6 +75,10 @@ int  cal1(t_label *start, t_command *c, t_char *lst, char *str)
 	{
 	   k = s->command;
 		while(k)
+=======
+	   k = s->command;
+		while(k && k != c)
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 		{
 			if(k == c)
 				return res;
@@ -58,13 +90,18 @@ int  cal1(t_label *start, t_command *c, t_char *lst, char *str)
 	return res;
 }
 
+<<<<<<< HEAD
 int  cal3(t_label *now, t_command *c, t_char *lst, char *str)
+=======
+int  cal3(t_label *start, t_command *c, t_char *lst, char *str)
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 {
 	t_label     *s;
 	t_command   *k;
 	int         res;
 
 	res = 0;
+<<<<<<< HEAD
 	s = now;
 	k = c;
 	while(k && k != c)
@@ -74,12 +111,25 @@ int  cal3(t_label *now, t_command *c, t_char *lst, char *str)
 	{
 		if(!ft_strcmp(s->name, str))
 			return res;
+=======
+	s = start;
+	k = s->command;
+	while(k && k != c)
+		k = k->next;
+	while(s)
+	{
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 		while(k)
 		{
 			res = res + weight_command(k, lst);
 			k = k->next;
 		}
+<<<<<<< HEAD
 		// printf("bee_gen|%s|   |%s|\n", s->name, str);
+=======
+		if(!ft_strcmp(s->name, str))
+			return res;
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 		s = s->next;
 		if(s)
 			k = s->command;
@@ -87,15 +137,24 @@ int  cal3(t_label *now, t_command *c, t_char *lst, char *str)
 	return res;
 }
 
+<<<<<<< HEAD
 int		function_ret_one(char *str, t_char *lst, t_label *now)
 {
 	int		i;
 	t_label *s;
 
+=======
+int   calculation(char *str, t_char *lst, t_command *c, t_label *now)
+{
+	int     i;
+	t_label *s;
+	
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 	s = lst->label;
 	i = -2;
 	while(s)
 	{
+<<<<<<< HEAD
 		if(s == now)// && !ft_strcmp(s->name, str))
 		{
 			if(s->name && !ft_strcmp(s->name, str))
@@ -153,6 +212,25 @@ char   *calculation(char *str, t_char *lst, t_command *c, t_label *now, int size
 		return(tmp);
 	}
 	return (NULL);
+=======
+		if(s->name && !ft_strcmp(s->name, str))
+		{
+			i++;
+			break ;
+		}
+		if(s == now)
+			i = 0;
+		s = s->next;
+	}
+	//max зависит от label size ffff || ffff ffff
+	if(i == -1)
+		printf("cal1 = %d", cal1(lst->label, c, lst));//return (max- cal1 + 1)
+	if(i == 0)
+		printf("cal2 = %d", cal2(now, c, lst));//return (cal2 != 0 ? max - cal2 + 1 : 0)
+	if(i == 1)
+		printf("cal3 = %d", cal3(s, c, lst, str));//return (cal3)
+	return (1);
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 }
 
 int    instead_label_way(t_label *l, t_char *lst)
@@ -160,8 +238,12 @@ int    instead_label_way(t_label *l, t_char *lst)
 	t_label     *tmp;
 	t_command   *c;
 	int         i;
+<<<<<<< HEAD
 	char		*str;
 	int		x;
+=======
+
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 	tmp = l;
 	while(tmp)
 	{
@@ -171,6 +253,7 @@ int    instead_label_way(t_label *l, t_char *lst)
 			i = 0;
 			while(i < c->num_param)
 			{
+<<<<<<< HEAD
 				if(c->opcode > 0 && (c->param_type[i] == 20 || c->param_type[i] == 40))
 				{
 					x = lst->op[c->opcode - 1].label_size;
@@ -185,12 +268,20 @@ int    instead_label_way(t_label *l, t_char *lst)
 					}
 					free(c->param[i]);
 					c->param[i] = str;
+=======
+				if(c->param_type[i] == 20 || c->param_type[i] == 40)
+				{
+					calculation(c->param[i], lst, c, tmp);
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 				}
 				i++;
 			}
 			c = c->next;
 		}
+<<<<<<< HEAD
 		tmp = tmp->next;
+=======
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 	}
 	return (0);
 }

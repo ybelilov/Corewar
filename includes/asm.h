@@ -33,7 +33,11 @@ typedef struct			s_op
 	int					label_size;
 }						t_op;
 
+<<<<<<< HEAD
 typedef struct            s_file
+=======
+typedef struct			s_file
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 {
 	char				size;
 	int					fd;
@@ -41,7 +45,11 @@ typedef struct            s_file
 	int					x;
 	int					j;
 	int					o;
+<<<<<<< HEAD
 }                        t_file;
+=======
+}						t_file;
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 
 typedef struct			s_command
 {
@@ -80,10 +88,15 @@ int						label_this(char *line);
 int 					correct_name_command(char *line,  t_char *lst, t_command *s);
 int						valid_label(t_label *l);
 void   					write_in_file(int fd, t_char *lst);
+<<<<<<< HEAD
 int						prog_size(t_char *lst);//prover
 int    					instead_label_way(t_label *l, t_char *lst);
 char					*codage_octal(t_command *c, t_char *lst);
 int						weight_command(t_command *c, t_char *lst);
+=======
+int    					prog_size(t_label *l);//prover
+int    					instead_label_way(t_label *l, t_char *lst);
+>>>>>>> 9de9fc07f468cf26fc32bc129b6de77a284f77b1
 /*
 	Parameter validation
 */
