@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   label_this.c                                       :+:      :+:    :+:   */
+/*   weight_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngulya <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/08 17:24:07 by ngulya            #+#    #+#             */
-/*   Updated: 2017/07/08 17:24:08 by ngulya           ###   ########.fr       */
+/*   Created: 2017/07/13 16:04:32 by ngulya            #+#    #+#             */
+/*   Updated: 2017/07/13 16:04:33 by ngulya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int		label_this(char *line)
+int   weight_command(t_command *c, t_char *lst)
 {
-	char 	*tmp;
-	int 	j;
-	int		i;
+	int     i;
+	int     res;
 
+	res = 2;
 	i = 0;
-	j = 0;
-	tmp = line;
-	while(tmp && *tmp && (*tmp == ' ' || *tmp == '\t'))
+	if(lst->op[c->opcode - 1].octage)
+		res = res + 2;
+	while(i < c->num_param)
 	{
-		j++;
-		tmp++;
-	}
-	while(tmp && *tmp && *tmp != ':' && *tmp != ' ' && *tmp != '\t')
-	{
+		if(c->param_type[i] == 1)
+			res = res + 2;
+		if(c->param_type[i] == 2 || c->param_type[i] == 20)
+			res = res + (lst->op[c->opcode - 1].label_size ? lst->op[c->opcode - 1].label_size * 2 : 4);
+		if(c->param_type[i] == 4 || c->param_type[i] == 40)
+			res = res + 4;
 		i++;
-		tmp++;
 	}
-	if(!tmp || (tmp && !*tmp))
-		return -1;
-	if(*tmp == ':')
-		return (correct_label_char(line + j, i) ? 1 : -1);
-	return 0;
+	return res;
 }

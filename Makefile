@@ -18,8 +18,13 @@ FILE = 	./src/asm_main.o \
 		./src/valid_label.o \
 		./src/byte_go.o \
 		./src/read_while_empty.o\
+		./src/codage_octal.o \
+		./src/weight_command.o\
 		./src/parameter_validation.o\
-		./src/arguments_check.o
+		./src/arguments_check.o\
+		./src/write_in_file.o \
+		./src/instead_label_way.o \
+		./src/prog_size.o
 
 OBJ = $(FILE:.o=.c)
 
@@ -29,7 +34,7 @@ liba:
 	@make -C $(LIBFT)
 
 comp:
-	@$(CC) $(FLAGS) -g  $(OBJ) ./libft/libft.a -o $(ASM)
+	@$(CC) -g $(FLAGS) $(OBJ) ./libft/libft.a -o $(ASM)
 
 clean:
 	@make clean -C $(LIBFT)

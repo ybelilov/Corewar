@@ -34,12 +34,9 @@ char	*ten_hex(long long int i, char *str, int size)
 		i = i / 16;
 	}
 	if(!str)
-		tmp = ft_strdup(m);
-	else
-	{
-		tmp = ft_strjoin(str, m);
-		free(str);
-	}
+		return (m);
+	tmp = ft_strjoin(str, m);
+	free(str);
 	free(m);
 	return (tmp);
 }

@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceRoot}/asm",
-            "args": [],
+            "args": ["helltrain.s"],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
             "environment": [],

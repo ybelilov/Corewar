@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   label_this.c                                       :+:      :+:    :+:   */
+/*   prog_size.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngulya <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/08 17:24:07 by ngulya            #+#    #+#             */
-/*   Updated: 2017/07/08 17:24:08 by ngulya           ###   ########.fr       */
+/*   Created: 2017/07/12 12:47:17 by ngulya            #+#    #+#             */
+/*   Updated: 2017/07/12 12:47:18 by ngulya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int		label_this(char *line)
+int		prog_size(t_char *lst)
 {
-	char 	*tmp;
-	int 	j;
-	int		i;
+	t_label *l;
+	long long int res;
+	t_command	*c;
 
-	i = 0;
-	j = 0;
-	tmp = line;
-	while(tmp && *tmp && (*tmp == ' ' || *tmp == '\t'))
+	res = 0;
+	l = lst->label;
+	while(l && res < 100000)
 	{
-		j++;
-		tmp++;
+		c = l->command;
+		while(c && res < 100000)
+		{
+			res = res + weight_command(c, lst);
+			c = c->next;
+		}
+		l = l->next;
 	}
-	while(tmp && *tmp && *tmp != ':' && *tmp != ' ' && *tmp != '\t')
+	if((res / 2) < 682)
 	{
-		i++;
-		tmp++;
+		lst->size = res;
+		return 1;
 	}
-	if(!tmp || (tmp && !*tmp))
-		return -1;
-	if(*tmp == ':')
-		return (correct_label_char(line + j, i) ? 1 : -1);
 	return 0;
 }

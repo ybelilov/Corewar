@@ -43,14 +43,28 @@ int		correct_char_name(char *str, int size)
 	int		j;
 
 	j = 0;
+	printf("str= |%s|\n", str);
+	while(*str && (*str == ' ' || *str == '\t'))
+		str++;
+	if(*str != '"')
+		return 0;
+	else
+		str++;
 	while(*str && *str != '"' && j < size + 2)
 	{
 		str++;
 		j++;
 	}
-	if(!*str || (*str && *(str + 1)))
+	if(*str != '"' || j > size || (j == 0 && size == 128))
 		return 0;
-	if(j > size || (j == 0 && size == 128))
-		return 0;
+	str++;
+	while(*str)
+	{
+		if(*str == '#')
+			return 1;
+		if(*str && *str != ' ' && *str != '\t')
+			return 0;
+		str++;
+	}
 	return 1;
 }

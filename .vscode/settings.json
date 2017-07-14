@@ -1,6 +1,9 @@
 {
     "files.associations": {
-        "op.h": "c",
-        "asm.h": "c"
+        "stdio.h": "c",
+        "asm.h": "c",
+        "get_next_line.h": "c",
+        "_null.h": "c",
+        "op.h": "c"
     }
 }

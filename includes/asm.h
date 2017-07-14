@@ -17,7 +17,7 @@
 # include "../libft/libft.h"
 # include "op.h"
 
-
+//max prog size, проверка
 # define HEX "0123456789abcdef"
 # define OP main->op
 typedef struct			s_op
@@ -32,6 +32,16 @@ typedef struct			s_op
 	int					octage;
 	int					label_size;
 }						t_op;
+
+typedef struct            s_file
+{
+	char				size;
+	int					fd;
+	char				*str;
+	int					x;
+	int					j;
+	int					o;
+}                        t_file;
 
 typedef struct			s_command
 {
@@ -54,6 +64,7 @@ typedef struct			s_char
 	char 				*name;
 	char 				*comment;
 	int					fd;
+	int					size;
 	t_op				*op;
 	t_label				*label;
 }						t_char;
@@ -68,6 +79,11 @@ int						have_something_after_space(char *str);
 int						label_this(char *line);
 int 					correct_name_command(char *line,  t_char *lst, t_command *s);
 int						valid_label(t_label *l);
+void   					write_in_file(int fd, t_char *lst);
+int						prog_size(t_char *lst);//prover
+int    					instead_label_way(t_label *l, t_char *lst);
+char					*codage_octal(t_command *c, t_char *lst);
+int						weight_command(t_command *c, t_char *lst);
 /*
 	Parameter validation
 */

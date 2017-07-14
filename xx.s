@@ -1,6 +1,5 @@
-
-.name "asd"		#asfs
-.comment "ashd"
+.name "asd"
+.comment "asd"
 
 
 	or 552,r2,r3 

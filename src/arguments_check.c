@@ -19,10 +19,10 @@ int		is_t_dir(char *arg, int *param_type, char **param, int size)
 		*param_type = T_DIR * 10;
 		*param = ft_strdup(&arg[2]);
 	}
-	else if (arg[0] == DIRECT_CHAR && arg[1] != '+' && ft_isanbr(arg))
+	else if (arg[0] == DIRECT_CHAR && arg[1] != '+' && ft_isanbr(&arg[1]))
 	{
 		*param_type = T_DIR;
-		*param = ten_hex(most_long_long(arg), NULL, size * 2);
+		*param = ten_hex(most_long_long(&arg[1]), NULL, size * 2);
 	}
 	else
 		return(0);
@@ -53,7 +53,7 @@ int		is_t_reg(char *arg, int *param_type, char **param)
 		|| ft_atoi(&arg[1]) > REG_NUMBER || ft_atoi(&arg[1]) < 1)
 		return (0);
 	*param_type = T_REG;
-	*param = ft_strdup(&arg[1]);
+	*param = ten_hex(ft_atoi(&arg[1]), NULL, 2);
 	return (T_REG);
 }
 

@@ -25,17 +25,20 @@ int 	correct_name_command(char *line,  t_char *lst, t_command *s)
 	tmp = line;
 	if(!line || !*line)
 		return 0;
-	while(*tmp && *tmp != ' ')
+	while(*tmp && (*tmp != ' ' && *tmp != '\t'))
 	{
 		tmp++;
 		j++;
 	}
 	while(*tmp && i < 16 && ft_strncmp(line, lst->op[i].name, j))
 		i++;
+	// printf("\n\n1\n");
 	if(*tmp && i < 16 &&  !ft_strncmp(line, lst->op[i].name, j))
 	{
+		// printf("2\n");
 		s->opcode = i + 1;
-		return 1;
+		return (parameter_validation(lst, s, tmp));
 	}
+	// printf("3\n");
 	return 0;
 }
